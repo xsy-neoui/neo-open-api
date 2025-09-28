@@ -1,0 +1,59 @@
+{
+  "name": "neo-open-api",
+  "version": "1.0.0",
+  "description": "Neo OpenAPI SDK",
+  "keywords": [
+    "neo open api",
+    "neo sdk"
+  ],
+  "author": "wibetter",
+  "license": "MIT",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "scripts": {
+    "linkDebug": "neo linkDebug",
+    "build2lib": "neo build2lib",
+    "build2esm": "neo build2esm",
+    "format": "prettier --write \"src/**/**/*.{js,jsx,ts,tsx,vue,scss,json}\""
+  },
+  "files": [
+    "dist/*",
+    "docs/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/**/*.{js,jsx,ts,tsx,vue,scss,json}": [
+      "prettier --write"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git@github.com:wibetter/neo-open-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wibetter/neo-open-api/issues"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^9.1.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9",
+    "neo-cmp-cli": "^1.2.8",
+    "prettier": "^2.0.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "engines": {
+    "node": ">= 10.13.0",
+    "npm": ">= 6.4.1"
+  }
+}
