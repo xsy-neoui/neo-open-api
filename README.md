@@ -105,13 +105,13 @@ const result = await xObject.getEntityTypeList('xObjectApiKey', {
 import { xObject } from 'neo-open-api';
 
 // 获取标准对象列表
-const standardObjects = await xObject.getEntityList({
+const {data: standardObjects} = await xObject.getEntityList({
   custom: false, // 获取标准对象
   active: true   // 仅获取有权限的对象
 });
 
 // 获取自定义对象列表
-const customObjects = await xObject.getEntityList({
+const {data: customObjects} = await xObject.getEntityList({
   custom: true,  // 获取自定义对象
   active: true   // 仅获取有权限的对象
 });
@@ -258,16 +258,16 @@ const result = await xObject.getDesc('xObjectApiKey');
 import { xObject } from 'neo-open-api';
 
 // 查询联系人列表
-const contacts = await xObject.query({
+const {data: contacts} = await xObject.query({
   xObjectApiKey: 'xxObject',
   fields: ['name', 'phone', 'email'],
   page: 1,
   pageSize: 20,
-  orderBy: 'createdTime desc'
+  orderBy: 'createdAt desc'
 });
 
 // 创建新联系人
-const newContact = await xObject.create('xxObject', {
+const {data: newContact} = await xObject.create('xxObject', {
   data: {
     name: '王五',
     phone: '13700137000',
@@ -276,14 +276,14 @@ const newContact = await xObject.create('xxObject', {
 });
 
 // 更新联系人
-const updatedContact = await xObject.update('xxObject', newContact.id, {
+const {data: updatedContact} = await xObject.update('xxObject', newContact.id, {
   data: {
     name: '王五（更新）'
   }
 });
 
 // 获取联系人详情
-const contactDetail = await xObject.get('xxObject', newContact.id);
+const {data: contactDetail} = await xObject.get('xxObject', newContact.id);
 
 // 删除联系人
 await xObject.delete('Contact', newContact.id);

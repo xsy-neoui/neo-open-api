@@ -67,5 +67,46 @@ console.log('result7:', result7);
 */
 
 // 获取对象描述
+/*
 const result8 = await xObject.getDesc('customContact__c1');
 console.log('result8:', result8);
+*/
+
+// 查询联系人列表
+const {data: contacts} = await xObject.query({
+  xObjectApiKey: 'customContact__c',
+  fields: ['name', 'phone__c'],
+  page: 1,
+  pageSize: 20,
+  orderBy: 'createdAt desc'
+});
+
+console.log('contacts:', contacts);
+
+// 创建新联系人
+const {data: newContact} = await xObject.create('customContact__c', {
+  data: {
+    name: '王五',
+    phone__c: '13700137000',
+    entityType: 3998238856273477
+  }
+});
+
+console.log('newContact:', newContact);
+
+// 更新联系人
+const {data: updatedContact} = await xObject.update('customContact__c', newContact.id, {
+  data: {
+    name: '王五（更新）'
+  }
+});
+
+console.log('updatedContact:', updatedContact);
+
+// 获取联系人详情
+const {data: contactDetail} = await xObject.get('customContact__c', newContact.id);
+console.log('contactDetail:', contactDetail);
+
+// 删除联系人
+const result = await xObject.delete('customContact__c', newContact.id);
+console.log('result:', result);
