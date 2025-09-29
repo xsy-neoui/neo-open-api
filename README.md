@@ -63,13 +63,11 @@ const result = await xobject.query({
 **返回结果：**
 ```typescript
 {
-  code: 200,
-  result: {
-    // 查询结果数据
-    records: any[],
-    // 分页信息
-    totalSize: number, // 总个数
-  }
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  totalSize: number, // 总个数
+  data: any[] // 查询结果数据
 }
 ```
 
@@ -87,6 +85,17 @@ const result = await xobject.getEntityTypeList('xObjectApiKey', {
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
 - `options`: 可选的请求配置
+
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  totalSize: number, // 总个数
+  data: any[] // 查询结果数据
+}
+```
 
 #### 3. 获取对象列表 (getEntityList)
 获取系统中的对象列表，支持标准对象和自定义对象。
@@ -111,6 +120,17 @@ const customObjects = await xobject.getEntityList({
 - `custom`: 是否获取自定义对象，false 为标准对象，true 为自定义对象
 - `active`: 是否仅获取有权限的对象，默认为 true
 
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  totalSize: number, // 总个数
+  data: any[] // 查询结果数据
+}
+```
+
 #### 4. 创建业务数据 (createXObject)
 创建新的业务数据记录。
 
@@ -129,6 +149,18 @@ const result = await xobject.create('xObjectApiKey', {
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
 - `options.data`: 要创建的数据对象
+
+
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  totalSize: number, // 总个数
+  data: Object // 创建的业务数据
+}
+```
 
 #### 5. 更新业务数据 (updateXObject)
 更新指定的业务数据记录。
@@ -149,6 +181,16 @@ const result = await xobject.update('xObjectApiKey', 'xObjectId', {
 - `xObjectId`: 要更新的记录 ID
 - `options.data`: 要更新的数据对象
 
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  data: Object // 更新的业务数据
+}
+```
+
 #### 6. 获取业务数据信息 (getXObject)
 获取指定业务数据记录的详细信息。
 
@@ -165,6 +207,16 @@ const result = await xobject.get('xObjectApiKey', 'xObjectId', {
 - `xObjectId`: 要获取的记录 ID
 - `options`: 可选的请求配置
 
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+  data: Object // 获取的业务数据
+}
+```
+
 #### 7. 删除业务数据 (deleteXObject)
 删除指定的业务数据记录。
 
@@ -177,6 +229,15 @@ const result = await xobject.delete('xObjectApiKey', 'xObjectId');
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
 - `xObjectId`: 要删除的记录 ID
+
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number, // 返回码
+  msg: string, // 一般用于返回错误信息
+}
+```
 
 #### 8. 获取业务对象描述 (getXObjectDesc)
 获取业务对象的描述信息。

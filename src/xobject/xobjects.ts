@@ -14,11 +14,33 @@ export const getEntityTypeList = async (
       method: 'GET',
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === 200 || resultData.code === '200') {
+      const { records, totalSize } = resultData.data || {};
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '获取业务类型列表成功',
+        totalSize,
+        data: records || [],
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '获取业务类型列表失败',
+      data: [],
+    };
   } catch (error) {
-    console.error('获取业务类型失败:', error);
-    return {};
+    console.error('获取业务类型列表失败:', error);
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '获取业务类型列表失败',
+      data: [],
+    };
   }
 };
 
@@ -35,11 +57,38 @@ export const getEntityList = async (options?: any) => {
       method: 'GET',
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (
+      resultData.code === '0' ||
+      resultData.code === 0 ||
+      resultData.code === '200' ||
+      resultData.code === 200
+    ) {
+      const { records, totalSize } = resultData.data || {};
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '获取对象列表成功',
+        totalSize,
+        data: records || [],
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '获取对象列表失败',
+      data: [],
+    };
   } catch (error) {
     console.error('获取对象列表失败:', error);
-    return {};
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '获取对象列表失败',
+      data: [],
+    };
   }
 };
 
@@ -52,36 +101,37 @@ export const createXObject = async (xObjectApiKey: string, options: any) => {
     const config = {
       ...options,
       url: apiUrl,
-      method: curOptions.method || 'GET',
+      method: curOptions.method || 'POST',
       data: {
         data: formData,
       },
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === '200' || resultData.code === 200) {
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '创建业务数据成功',
+        data: resultData.data || {},
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '创建业务数据失败',
+      data: {},
+    };
   } catch (error) {
     console.error('创建业务数据失败:', error);
-    throw error;
-  }
-};
 
-// 获取业务对象描述
-export const getXObjectDesc = async (xObjectApiKey: string, options?: any) => {
-  const curOptions = options || {};
-  const apiUrl = `/rest/data/v2.0/xobjects/${xObjectApiKey}/description`;
-  try {
-    const config = {
-      ...options,
-      url: apiUrl,
-      method: curOptions.method || 'GET',
+    return {
+      status: false,
+      msg: error.msg || error.message || '创建业务数据失败',
+      data: {},
     };
-
-    const result = await axiosFetcher(config);
-    return result;
-  } catch (error) {
-    console.error('获取业务对象描述:', error);
-    throw error;
   }
 };
 
@@ -104,11 +154,31 @@ export const updateXObject = async (
       },
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === '200' || resultData.code === 200) {
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '更新业务数据成功',
+        data: resultData.data || {},
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '更新业务数据失败',
+      data: {},
+    };
   } catch (error) {
     console.error('更新业务数据失败:', error);
-    throw error;
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '更新业务数据失败',
+      data: {},
+    };
   }
 };
 
@@ -127,11 +197,31 @@ export const getXObject = async (
       method: curOptions.method || 'GET',
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === '200' || resultData.code === 200) {
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '获取业务数据成功',
+        data: resultData.data || {},
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '获取业务数据失败',
+      data: {},
+    };
   } catch (error) {
-    console.error('获取业务数据信息失败:', error);
-    throw error;
+    console.error('获取业务数据失败:', error);
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '获取业务数据失败',
+      data: {},
+    };
   }
 };
 
@@ -150,10 +240,66 @@ export const deleteXObject = async (
       method: curOptions.method || 'DELETE',
     };
 
-    const result = await axiosFetcher(config);
-    return result;
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === '200' || resultData.code === 200) {
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '删除业务数据成功',
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '删除业务数据失败',
+    };
   } catch (error) {
-    console.error('删除业务数据:', error);
-    throw error;
+    console.error('删除业务数据失败:', error);
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '删除业务数据失败',
+    };
+  }
+};
+
+// 获取业务对象描述
+export const getXObjectDesc = async (xObjectApiKey: string, options?: any) => {
+  const curOptions = options || {};
+  const apiUrl = `/rest/data/v2.0/xobjects/${xObjectApiKey}/description`;
+  try {
+    const config = {
+      ...options,
+      url: apiUrl,
+      method: curOptions.method || 'GET',
+    };
+
+    const resultData = await axiosFetcher(config);
+
+    if (resultData.code === '200' || resultData.code === 200) {
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '获取业务对象描述数据成功',
+        data: resultData.data || {},
+      };
+    }
+
+    return {
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '获取业务对象描述数据失败',
+      data: {},
+    };
+  } catch (error) {
+    console.error('获取业务对象描述数据失败:', error);
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '获取业务对象描述数据失败',
+      data: {},
+    };
   }
 };

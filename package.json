@@ -17,8 +17,7 @@
     "format": "prettier --write \"src/**/**/*.{js,jsx,ts,tsx,vue,scss,json}\""
   },
   "files": [
-    "dist/*",
-    "docs/*"
+    "dist/*"
   ],
   "husky": {
     "hooks": {

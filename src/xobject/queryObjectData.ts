@@ -45,18 +45,31 @@ export const queryXObjectData = async (options?: any) => {
 
     const resultData = await axiosFetcher(config);
 
-    // 返回包含分页信息的结果
+    if (resultData.code === 200) {
+      const { records, totalSize } = resultData.result || {};
+      return {
+        status: true,
+        code: resultData.code,
+        msg: resultData.msg || '获取业务对象数据列表成功',
+        totalSize,
+        data: records || [],
+      };
+    }
+
     return {
-      ...resultData,
-      pagination: {
-        page,
-        pageSize,
-        offset,
-      },
+      status: false,
+      code: resultData.code,
+      msg: resultData.msg || '获取业务对象数据列表失败',
+      data: [],
     };
   } catch (error) {
-    console.error('获取业务类型失败:', error);
-    return {};
+    console.error('获取业务对象数据列表失败:', error);
+
+    return {
+      status: false,
+      msg: error.msg || error.message || '获取业务对象数据列表失败',
+      data: [],
+    };
   }
 };
 

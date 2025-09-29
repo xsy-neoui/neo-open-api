@@ -1,7 +1,7 @@
 /**
  * Neo OpenAPI SDK
  */
-import axiosFetcher from '$utils/axiosFetcher';
+import axiosFetcher from './utils/axiosFetcher';
 import { queryXObjectData } from '$xobject/queryObjectData';
 import {
   getEntityTypeList,
@@ -18,8 +18,8 @@ const xobject = {
   query: queryXObjectData,
   getEntityTypeList,
   getEntityList,
-  getXObjectDesc,
-  getDesc: createXObject,
+  getDesc: getXObjectDesc,
+  create: createXObject,
   update: updateXObject,
   get: getXObject,
   delete: deleteXObject,
