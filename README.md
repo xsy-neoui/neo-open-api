@@ -1,5 +1,6 @@
 ## Neo OpenAPI SDK 使用文档
 Neo OpenAPI SDK 仅支持平台端（NeoCRM）使用，脱离平台需 使用 OAuth安全认证，详细见 [API的使用方法](https://doc.xiaoshouyi.com/?sso-domain=login-cd.xiaoshouyi.com#/proMan/workplaceDetailApi?url=%2F%2Fconcepts%2Fapi_apiUtilizationMethod.html&id=1404&dir=output_1757040838809&time=1759063137723)。
+当前主要在 Neo 自定义组件中使用，如何开发 Neo 自定义组件请见 [neo-cmp-cli 使用文档](https://www.npmjs.com/package/neo-cmp-cli)。
 
 ## 安装
 
@@ -8,7 +9,7 @@ npm install --save neo-open-api
 ```
 
 
-## Open API 提供的请求方法
+## 使用 Neo OpenAPI SDK 提供的请求方法
 
 ### 基础请求工具
 
@@ -37,7 +38,7 @@ const result = await axiosFetcher({
 
 ### 业务对象相关接口
 
-#### 1. 查询业务对象数据列表 (queryXObjectData)
+#### 1. 查询业务对象数据列表
 使用通用查询接口获取业务对象数据，支持分页和排序。
 
 ```typescript
@@ -71,7 +72,7 @@ const result = await xObject.query({
 }
 ```
 
-#### 2. 获取业务类型列表 (getEntityTypeList)
+#### 2. 获取业务类型列表
 获取指定业务对象的业务类型列表。
 
 ```typescript
@@ -97,7 +98,7 @@ const result = await xObject.getEntityTypeList('xObjectApiKey', {
 }
 ```
 
-#### 3. 获取对象列表 (getEntityList)
+#### 3. 获取对象列表
 获取系统中的对象列表，支持标准对象和自定义对象。
 
 ```typescript
@@ -131,7 +132,7 @@ const customObjects = await xObject.getEntityList({
 }
 ```
 
-#### 4. 创建业务数据 (createXObject)
+#### 4. 创建业务数据
 创建新的业务数据记录。
 
 ```typescript
@@ -162,7 +163,7 @@ const result = await xObject.create('xObjectApiKey', {
 }
 ```
 
-#### 5. 更新业务数据 (updateXObject)
+#### 5. 更新业务数据
 更新指定的业务数据记录。
 
 ```typescript
@@ -191,7 +192,7 @@ const result = await xObject.update('xObjectApiKey', 'xObjectId', {
 }
 ```
 
-#### 6. 获取业务数据信息 (getXObject)
+#### 6. 获取业务数据信息 
 获取指定业务数据记录的详细信息。
 
 ```typescript
@@ -217,7 +218,7 @@ const result = await xObject.get('xObjectApiKey', 'xObjectId', {
 }
 ```
 
-#### 7. 删除业务数据 (deleteXObject)
+#### 7. 删除业务数据
 删除指定的业务数据记录。
 
 ```typescript
@@ -239,7 +240,7 @@ const result = await xObject.delete('xObjectApiKey', 'xObjectId');
 }
 ```
 
-#### 8. 获取业务对象描述 (getXObjectDesc)
+#### 8. 获取业务对象描述
 获取业务对象的描述信息。
 
 ```typescript
