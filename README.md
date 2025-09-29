@@ -41,10 +41,10 @@ const result = await axiosFetcher({
 使用通用查询接口获取业务对象数据，支持分页和排序。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
 // 基本查询
-const result = await xobject.query({
+const result = await xObject.query({
   xObjectApiKey: 'xxObject', // 业务对象 API Key
   fields: ['name', 'phone', 'email'], // 查询字段
   page: 1, // 页码
@@ -75,9 +75,9 @@ const result = await xobject.query({
 获取指定业务对象的业务类型列表。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.getEntityTypeList('xObjectApiKey', {
+const result = await xObject.getEntityTypeList('xObjectApiKey', {
   // 其他请求选项
 });
 ```
@@ -101,16 +101,16 @@ const result = await xobject.getEntityTypeList('xObjectApiKey', {
 获取系统中的对象列表，支持标准对象和自定义对象。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
 // 获取标准对象列表
-const standardObjects = await xobject.getEntityList({
+const standardObjects = await xObject.getEntityList({
   custom: false, // 获取标准对象
   active: true   // 仅获取有权限的对象
 });
 
 // 获取自定义对象列表
-const customObjects = await xobject.getEntityList({
+const customObjects = await xObject.getEntityList({
   custom: true,  // 获取自定义对象
   active: true   // 仅获取有权限的对象
 });
@@ -135,9 +135,9 @@ const customObjects = await xobject.getEntityList({
 创建新的业务数据记录。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.create('xObjectApiKey', {
+const result = await xObject.create('xObjectApiKey', {
   data: {
     name: '张三',
     phone: '13800138000',
@@ -166,9 +166,9 @@ const result = await xobject.create('xObjectApiKey', {
 更新指定的业务数据记录。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.update('xObjectApiKey', 'xObjectId', {
+const result = await xObject.update('xObjectApiKey', 'xObjectId', {
   data: {
     name: '李四',
     phone: '13900139000'
@@ -195,9 +195,9 @@ const result = await xobject.update('xObjectApiKey', 'xObjectId', {
 获取指定业务数据记录的详细信息。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.get('xObjectApiKey', 'xObjectId', {
+const result = await xObject.get('xObjectApiKey', 'xObjectId', {
   // 其他请求选项
 });
 ```
@@ -221,9 +221,9 @@ const result = await xobject.get('xObjectApiKey', 'xObjectId', {
 删除指定的业务数据记录。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.delete('xObjectApiKey', 'xObjectId');
+const result = await xObject.delete('xObjectApiKey', 'xObjectId');
 ```
 
 **参数说明：**
@@ -243,9 +243,9 @@ const result = await xobject.delete('xObjectApiKey', 'xObjectId');
 获取业务对象的描述信息。
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
-const result = await xobject.getDesc('xObjectApiKey');
+const result = await xObject.getDesc('xObjectApiKey');
 ```
 
 **参数说明：**
@@ -254,10 +254,10 @@ const result = await xobject.getDesc('xObjectApiKey');
 ### 使用示例
 
 ```typescript
-import { xobject } from 'neo-open-api';
+import { xObject } from 'neo-open-api';
 
 // 查询联系人列表
-const contacts = await xobject.query({
+const contacts = await xObject.query({
   xObjectApiKey: 'xxObject',
   fields: ['name', 'phone', 'email'],
   page: 1,
@@ -266,7 +266,7 @@ const contacts = await xobject.query({
 });
 
 // 创建新联系人
-const newContact = await xobject.create('xxObject', {
+const newContact = await xObject.create('xxObject', {
   data: {
     name: '王五',
     phone: '13700137000',
@@ -275,16 +275,16 @@ const newContact = await xobject.create('xxObject', {
 });
 
 // 更新联系人
-const updatedContact = await xobject.update('xxObject', newContact.id, {
+const updatedContact = await xObject.update('xxObject', newContact.id, {
   data: {
     name: '王五（更新）'
   }
 });
 
 // 获取联系人详情
-const contactDetail = await xobject.get('xxObject', newContact.id);
+const contactDetail = await xObject.get('xxObject', newContact.id);
 
 // 删除联系人
-await xobject.delete('Contact', newContact.id);
+await xObject.delete('Contact', newContact.id);
 ```
 

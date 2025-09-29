@@ -2,7 +2,7 @@
  * Neo OpenAPI SDK
  */
 import axiosFetcher from './utils/axiosFetcher';
-declare const xobject: {
+declare const xObject: {
     query: (options?: any) => Promise<{
         status: boolean;
         code: any;
@@ -114,4 +114,4 @@ declare const xobject: {
         code?: undefined;
     }>;
 };
-export { axiosFetcher, xobject };
+export { axiosFetcher, xObject };

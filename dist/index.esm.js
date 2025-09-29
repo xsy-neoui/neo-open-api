@@ -78,7 +78,7 @@ const queryXObjectData = async (options) => {
                 code: resultData.code,
                 msg: resultData.msg || '获取业务对象数据列表成功',
                 totalSize,
-                data: records || []
+                data: records || [],
             };
         }
         return {
@@ -116,7 +116,7 @@ const getEntityTypeList = async (xObjectApiKey, options) => {
                 code: resultData.code,
                 msg: resultData.msg || '获取业务类型列表成功',
                 totalSize,
-                data: records || []
+                data: records || [],
             };
         }
         return {
@@ -148,14 +148,17 @@ const getEntityList = async (options) => {
             method: 'GET',
         };
         const resultData = await axiosFetcher(config);
-        if (resultData.code === "0" || resultData.code === 0 || resultData.code === '200' || resultData.code === 200) {
+        if (resultData.code === '0' ||
+            resultData.code === 0 ||
+            resultData.code === '200' ||
+            resultData.code === 200) {
             const { records, totalSize } = resultData.data || {};
             return {
                 status: true,
                 code: resultData.code,
                 msg: resultData.msg || '获取对象列表成功',
                 totalSize,
-                data: records || []
+                data: records || [],
             };
         }
         return {
@@ -194,7 +197,7 @@ const createXObject = async (xObjectApiKey, options) => {
                 status: true,
                 code: resultData.code,
                 msg: resultData.msg || '创建业务数据成功',
-                data: resultData.data || {}
+                data: resultData.data || {},
             };
         }
         return {
@@ -233,7 +236,7 @@ const updateXObject = async (xObjectApiKey, objectId, options) => {
                 status: true,
                 code: resultData.code,
                 msg: resultData.msg || '更新业务数据成功',
-                data: resultData.data || {}
+                data: resultData.data || {},
             };
         }
         return {
@@ -268,7 +271,7 @@ const getXObject = async (xObjectApiKey, objectId, options) => {
                 status: true,
                 code: resultData.code,
                 msg: resultData.msg || '获取业务数据成功',
-                data: resultData.data || {}
+                data: resultData.data || {},
             };
         }
         return {
@@ -302,20 +305,20 @@ const deleteXObject = async (xObjectApiKey, objectId, options) => {
             return {
                 status: true,
                 code: resultData.code,
-                msg: resultData.msg || '删除业务数据成功'
+                msg: resultData.msg || '删除业务数据成功',
             };
         }
         return {
             status: false,
             code: resultData.code,
-            msg: resultData.msg || '删除业务数据失败'
+            msg: resultData.msg || '删除业务数据失败',
         };
     }
     catch (error) {
         console.error('删除业务数据失败:', error);
         return {
             status: false,
-            msg: error.msg || error.message || '删除业务数据失败'
+            msg: error.msg || error.message || '删除业务数据失败',
         };
     }
 };
@@ -335,7 +338,7 @@ const getXObjectDesc = async (xObjectApiKey, options) => {
                 status: true,
                 code: resultData.code,
                 msg: resultData.msg || '获取业务对象描述数据成功',
-                data: resultData.data || {}
+                data: resultData.data || {},
             };
         }
         return {
@@ -359,7 +362,7 @@ const getXObjectDesc = async (xObjectApiKey, options) => {
  * Neo OpenAPI SDK
  */
 // XObject 实体对象相关的方法
-const xobject = {
+const xObject = {
     query: queryXObjectData,
     getEntityTypeList,
     getEntityList,
@@ -370,4 +373,4 @@ const xobject = {
     delete: deleteXObject,
 };
 
-export { axiosFetcher, xobject };
+export { axiosFetcher, xObject };

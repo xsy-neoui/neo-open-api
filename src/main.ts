@@ -2,7 +2,7 @@
  * Neo OpenAPI SDK
  */
 import axiosFetcher from './utils/axiosFetcher';
-import { queryXObjectData } from '$xobject/queryObjectData';
+import { queryXObjectData } from '$xObject/queryObjectData';
 import {
   getEntityTypeList,
   getEntityList,
@@ -11,10 +11,10 @@ import {
   getXObject,
   deleteXObject,
   getXObjectDesc,
-} from '$xobject/xobjects';
+} from '$xObject/xObjects';
 
 // XObject 实体对象相关的方法
-const xobject = {
+const xObject = {
   query: queryXObjectData,
   getEntityTypeList,
   getEntityList,
@@ -25,4 +25,4 @@ const xobject = {
   delete: deleteXObject,
 };
 
-export { axiosFetcher, xobject };
+export { axiosFetcher, xObject };

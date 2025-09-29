@@ -21,7 +21,7 @@ module.exports = {
         '@': resolve('src'),
         $function: resolve('src/function'),
         $utils: resolve('src/utils'),
-        $xobject: resolve('src/xobject'),
+        $xObject: resolve('src/xObject'),
       },
       // conditionNames: ['require']
     },
