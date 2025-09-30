@@ -48,8 +48,8 @@ import { xObject } from 'neo-open-api';
 const result = await xObject.query({
   xObjectApiKey: 'xxObject', // 业务对象 API Key
   fields: ['name', 'phone', 'email'], // 查询字段
-  page: 1, // 页码
-  pageSize: 10, // 每页数量
+  page: 1, // 页码（可选）
+  pageSize: 10, // 每页数量（可选）
   orderBy: 'name asc' // 排序条件（可选）
 });
 ```
@@ -104,6 +104,11 @@ const result = await xObject.getEntityTypeList('xObjectApiKey', {
 ```typescript
 import { xObject } from 'neo-open-api';
 
+// 获取所有对象列表
+const {data: standardObjects} = await xObject.getEntityList({
+  active: true   // 仅获取有权限的对象
+});
+
 // 获取标准对象列表
 const {data: standardObjects} = await xObject.getEntityList({
   custom: false, // 获取标准对象
@@ -118,7 +123,7 @@ const {data: customObjects} = await xObject.getEntityList({
 ```
 
 **参数说明：**
-- `custom`: 是否获取自定义对象，false 为标准对象，true 为自定义对象
+- `custom`: 是否获取自定义对象，false 为标准对象，true 为自定义对象，不传则获取所有实体对象
 - `active`: 是否仅获取有权限的对象，默认为 true
 
 **返回结果：**

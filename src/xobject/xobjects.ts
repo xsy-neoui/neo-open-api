@@ -47,9 +47,12 @@ export const getEntityTypeList = async (
 // 获取对象列表
 export const getEntityList = async (options?: any) => {
   const curOptions = options || {};
-  const custom = curOptions.custom || false; // 默认获取标准对象列表
-  const active = curOptions.active || true; // 仅获取有权限的对象
-  const apiUrl = `/rest/metadata/v2.0/xobjects/filter?custom=${custom}&active=${active}`;
+  const active = curOptions.active ?? true; // 仅获取有权限的对象
+  const custom = curOptions.custom; // 默认获取标准对象列表
+  let apiUrl = `/rest/metadata/v2.0/xobjects/filter?active=${active}`;
+  if (custom !== undefined) {
+    apiUrl = `/rest/metadata/v2.0/xobjects/filter?custom=${custom}&active=${active}`;
+  }
   try {
     const config = {
       ...curOptions,
