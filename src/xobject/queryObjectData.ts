@@ -9,7 +9,7 @@ export const queryXObjectData = async (options?: any) => {
   const apiUrl = '/rest/data/v2/query';
   const curOptions = options || {};
   const xObjectApiKey = curOptions.xObjectApiKey || '';
-  const fields = curOptions.fields || [];
+  const fields = Object.assign([], curOptions.fields || []);
   const page = curOptions.page || 1;
   const pageSize = curOptions.pageSize || 10;
 
@@ -31,7 +31,7 @@ export const queryXObjectData = async (options?: any) => {
 
   if (curOptions.page || curOptions.pageSize) {
     // 添加分页限制
-    querySql += ` limit ${pageSize} offset ${offset}`;
+    querySql += ` limit ${offset},${pageSize}`;
   }
 
   try {

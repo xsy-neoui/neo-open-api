@@ -197,12 +197,22 @@ const result = await xObject.update('xObjectApiKey', 'xObjectId', {
 }
 ```
 
-#### 6. 获取业务数据信息 
+#### 6. 获取业务数据详情信息 
 获取指定业务数据记录的详细信息。
 
 ```typescript
 import { xObject } from 'neo-open-api';
 
+// 使用方式一
+const result = await xObject.get({
+  xObjectApiKey: 'xxKey', // 业务对象的 API Key
+  xObjectId: 'xxId',
+  option: {
+    // 其他请求选项
+  }
+});
+
+// 使用方式二
 const result = await xObject.get('xObjectApiKey', 'xObjectId', {
   // 其他请求选项
 });
@@ -210,7 +220,7 @@ const result = await xObject.get('xObjectApiKey', 'xObjectId', {
 
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
-- `xObjectId`: 要获取的记录 ID
+- `xObjectId`: 要获取的业务数据 ID
 - `options`: 可选的请求配置
 
 **返回结果：**
@@ -234,7 +244,7 @@ const result = await xObject.delete('xObjectApiKey', 'xObjectId');
 
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
-- `xObjectId`: 要删除的记录 ID
+- `xObjectId`: 要删除的业务数据 ID
 
 **返回结果：**
 ```typescript

@@ -11,7 +11,7 @@ import {
   getXObject,
   deleteXObject,
   getXObjectDesc,
-} from '$xObject/xObjects';
+} from '$xObject/index';
 
 // XObject 实体对象相关的方法
 const xObject = {

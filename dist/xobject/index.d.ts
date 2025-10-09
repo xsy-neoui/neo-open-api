@@ -58,7 +58,12 @@ export declare const updateXObject: (xObjectApiKey: string, objectId: string, op
     data: {};
     code?: undefined;
 }>;
-export declare const getXObject: (xObjectApiKey: string, objectId: string, options?: any) => Promise<{
+interface XObjectApiKey {
+    xObjectApiKey?: string;
+    objectId?: string;
+    options?: any;
+}
+export declare const getXObject: (xObjectApiKey: string | XObjectApiKey, objectId?: string, options?: any) => Promise<{
     status: boolean;
     code: any;
     msg: any;
@@ -89,3 +94,4 @@ export declare const getXObjectDesc: (xObjectApiKey: string, options?: any) => P
     data: {};
     code?: undefined;
 }>;
+export {};

@@ -43,7 +43,7 @@ const queryXObjectData = async (options) => {
     const apiUrl = '/rest/data/v2/query';
     const curOptions = options || {};
     const xObjectApiKey = curOptions.xObjectApiKey || '';
-    const fields = curOptions.fields || [];
+    const fields = Object.assign([], curOptions.fields || []);
     const page = curOptions.page || 1;
     const pageSize = curOptions.pageSize || 10;
     // 自动添加 objectId 字段
@@ -60,7 +60,7 @@ const queryXObjectData = async (options) => {
     }
     if (curOptions.page || curOptions.pageSize) {
         // 添加分页限制
-        querySql += ` limit ${pageSize} offset ${offset}`;
+        querySql += ` limit ${offset},${pageSize}`;
     }
     try {
         const config = {
@@ -258,10 +258,17 @@ const updateXObject = async (xObjectApiKey, objectId, options) => {
         };
     }
 };
-// 获取业务数据信息
+// 获取业务数据详情信息
 const getXObject = async (xObjectApiKey, objectId, options) => {
-    const curOptions = options || {};
-    const apiUrl = `/rest/data/v2.0/xobjects/${xObjectApiKey}/${objectId}`;
+    let curXObjectApiKey = xObjectApiKey;
+    let curObjectId = objectId;
+    let curOptions = options || {};
+    if (typeof xObjectApiKey === 'object' && xObjectApiKey.xObjectApiKey) {
+        curOptions = xObjectApiKey.options || {};
+        curObjectId = xObjectApiKey.objectId;
+        curXObjectApiKey = xObjectApiKey.xObjectApiKey;
+    }
+    const apiUrl = `/rest/data/v2.0/xobjects/${curXObjectApiKey}/${curObjectId}`;
     try {
         const config = {
             ...curOptions,

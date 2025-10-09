@@ -185,14 +185,27 @@ export const updateXObject = async (
   }
 };
 
-// 获取业务数据信息
+interface XObjectApiKey {
+  xObjectApiKey?: string;
+  objectId?: string;
+  options?: any;
+}
+
+// 获取业务数据详情信息
 export const getXObject = async (
-  xObjectApiKey: string,
-  objectId: string,
+  xObjectApiKey: string | XObjectApiKey,
+  objectId?: string,
   options?: any,
 ) => {
-  const curOptions = options || {};
-  const apiUrl = `/rest/data/v2.0/xobjects/${xObjectApiKey}/${objectId}`;
+  let curXObjectApiKey = xObjectApiKey;
+  let curObjectId = objectId;
+  let curOptions = options || {};
+  if (typeof xObjectApiKey === 'object' && xObjectApiKey.xObjectApiKey) {
+    curOptions = xObjectApiKey.options || {};
+    curObjectId = xObjectApiKey.objectId;
+    curXObjectApiKey = xObjectApiKey.xObjectApiKey;
+  }
+  const apiUrl = `/rest/data/v2.0/xobjects/${curXObjectApiKey}/${curObjectId}`;
   try {
     const config = {
       ...curOptions,
