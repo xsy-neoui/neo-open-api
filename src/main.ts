@@ -13,6 +13,8 @@ import {
   getXObjectDesc,
 } from '$xObject/index';
 
+import { getCustomApiList, runCustomApi } from '$customApi/index';
+
 // XObject 实体对象相关的方法
 const xObject = {
   query: queryXObjectData,
@@ -25,4 +27,10 @@ const xObject = {
   delete: deleteXObject,
 };
 
-export { axiosFetcher, xObject };
+// Custom API 自定义API相关的方法
+const customApi = {
+  getList: getCustomApiList,
+  run: runCustomApi,
+};
+
+export { axiosFetcher, xObject, customApi };

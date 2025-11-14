@@ -1,4 +1,4 @@
-import { xObject } from '../src/main';
+import { xObject, customApi } from '../src/main';
 
 /**
  * 测试 Neo OpenAPI
@@ -72,6 +72,7 @@ const result8 = await xObject.getDesc('customContact__c1');
 console.log('result8:', result8);
 */
 
+/*
 // 查询联系人列表
 const {data: contacts} = await xObject.query({
   xObjectApiKey: 'customContact__c',
@@ -110,3 +111,37 @@ console.log('contactDetail:', contactDetail);
 // 删除联系人
 const result = await xObject.delete('customContact__c', newContact.id);
 console.log('result:', result);
+*/
+
+// 获取自定义API列表
+const {data: apiList} = await customApi.getList({
+  pageNo: 1,
+  pageSize: 100
+});
+
+console.log('apiList:', apiList);
+
+// 示例1：执行自定义API（获取发货单详情）
+const result1 = await customApi.run({
+  apiUrl: '/rest/data/v2.0/scripts/api/test/getDeliveryOrderDetail',
+  methodType: 'POST',
+  data: {
+    id: 1
+  },
+});
+console.log('result2:', result1);
+
+
+// 示例2：执行自定义API（一个通用的代理接口自定义API）
+const result = await customApi.run({
+  apiUrl: '/rest/data/v2.0/scripts/api/proxy/forward',
+  methodType: 'POST',
+  data: {
+    url: 'https://interface.sina.cn/sports/pc_sports_caipiao_common_list_api.d.json',
+    method: 'get',
+    data: {
+      ename: 'nba',
+    },
+  },
+});
+console.log('result2:', result);

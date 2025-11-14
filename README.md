@@ -267,7 +267,90 @@ const result = await xObject.getDesc('xObjectApiKey');
 **参数说明：**
 - `xObjectApiKey`: 业务对象的 API Key
 
-### 使用示例
+### 自定义API相关接口
+
+#### 1. 获取自定义API列表
+获取系统中的自定义API列表，支持分页查询。
+
+```typescript
+import { customApi } from 'neo-open-api';
+
+// 基本用法
+const result = await customApi.getList({
+  pageNo: 1,    // 页码（可选）
+  pageSize: 1000 // 每页数量（可选）
+});
+```
+
+**参数说明：**
+- `pageNo`: 页码，默认为 1
+- `pageSize`: 每页数量，默认为 1000
+
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number | string, // 返回码
+  msg: string, // 一般用于返回错误信息
+  totalSize: number, // 总个数
+  data: any[] // 自定义API列表数据
+}
+```
+
+#### 2. 执行自定义API
+执行指定的自定义API接口。
+
+```typescript
+import { customApi } from 'neo-open-api';
+
+// 基本用法
+const result = await customApi.run({
+  apiUrl: '/rest/custom/api/endpoint', // 自定义API地址
+  methodType: 'POST', // 请求方法，如 'GET', 'POST', 'PUT', 'DELETE' 等（可选，默认为 'POST'）
+  data: { // 请求数据
+    key1: 'value1',
+    key2: 'value2'
+  }
+});
+```
+
+**参数说明：**
+- `apiUrl`: 自定义API的完整地址（必填）
+- `methodType` 或 `method`: 请求方法，默认为 'POST'
+- `data`: 请求数据对象，会被包装在 `data` 字段中发送
+
+**返回结果：**
+```typescript
+{
+  status: boolean, // 返回 true 表示执行成功
+  code: number | string, // 返回码
+  msg: string, // 一般用于返回错误信息
+  data: any // API返回的数据
+}
+```
+
+**使用示例：**
+```typescript
+import { customApi } from 'neo-open-api';
+
+// 获取自定义API列表
+const {data: apiList} = await customApi.getList({
+  pageNo: 1,
+  pageSize: 100
+});
+
+// 执行自定义API
+const result = await customApi.run({
+  apiUrl: '/rest/custom/api/processData',
+  methodType: 'POST',
+  data: {
+    param1: 'value1',
+    param2: 'value2'
+  }
+});
+```
+
+### 业务对象相关接口使用示例
 
 ```typescript
 import { xObject } from 'neo-open-api';

@@ -22,6 +22,7 @@ module.exports = {
         $function: resolve('src/function'),
         $utils: resolve('src/utils'),
         $xObject: resolve('src/xObject'),
+        $customApi: resolve('src/customApi'),
       },
       // conditionNames: ['require']
     },
