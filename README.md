@@ -333,12 +333,6 @@ const result = await customApi.run({
 ```typescript
 import { customApi } from 'neo-open-api';
 
-// 获取自定义API列表
-const {data: apiList} = await customApi.getList({
-  pageNo: 1,
-  pageSize: 100
-});
-
 // 执行自定义API
 const result = await customApi.run({
   apiUrl: '/rest/custom/api/processData',
@@ -347,6 +341,12 @@ const result = await customApi.run({
     param1: 'value1',
     param2: 'value2'
   }
+});
+
+// 获取当前添加的自定义API列表
+const {data: apiList} = await customApi.getList({
+  pageNo: 1,
+  pageSize: 100
 });
 ```
 
@@ -357,7 +357,7 @@ import { xObject } from 'neo-open-api';
 
 // 查询联系人列表
 const {data: contacts} = await xObject.query({
-  xObjectApiKey: 'xxObject',
+  xObjectApiKey: 'Contact',
   fields: ['name', 'phone', 'email'],
   page: 1,
   pageSize: 20,
@@ -365,7 +365,7 @@ const {data: contacts} = await xObject.query({
 });
 
 // 创建新联系人
-const {data: newContact} = await xObject.create('xxObject', {
+const {data: newContact} = await xObject.create('Contact', {
   data: {
     name: '王五',
     phone: '13700137000',
@@ -374,14 +374,14 @@ const {data: newContact} = await xObject.create('xxObject', {
 });
 
 // 更新联系人
-const {data: updatedContact} = await xObject.update('xxObject', newContact.id, {
+const {data: updatedContact} = await xObject.update('Contact', newContact.id, {
   data: {
     name: '王五（更新）'
   }
 });
 
 // 获取联系人详情
-const {data: contactDetail} = await xObject.get('xxObject', newContact.id);
+const {data: contactDetail} = await xObject.get('Contact', newContact.id);
 
 // 删除联系人
 await xObject.delete('Contact', newContact.id);
