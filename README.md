@@ -13,14 +13,14 @@ npm install --save neo-open-api
 
 ### 基础请求工具
 
-#### axiosFetcher
+#### request
 基于 axios 封装的通用请求工具，支持 GET、POST、PATCH、DELETE 等请求方法。
 
 ```typescript
-import { axiosFetcher } from 'neo-open-api';
+import { request } from 'neo-open-api';
 
 // 基本用法
-const result = await axiosFetcher({
+const result = await request({
   url: '/api/endpoint',
   method: 'GET',
   data: { key: 'value' },
@@ -35,6 +35,11 @@ const result = await axiosFetcher({
 - `data`: 请求数据，GET 请求会转为 params
 - `headers`: 请求头，默认包含 'Content-Type': 'application/json'
 - `timeout`: 超时时间，默认 30000ms
+
+##### request 内置拦截器，仅允许使用以下三类数据接口
+- 自定义 API：/rest/data/v2.0/scripts
+- 获取自定义 API 列表：/rest/metadata/v2.0/dx/logic/extpoints/openapi
+- 实体类 open api：/rest/data/v2.0/xobjects
 
 ### 业务对象相关接口
 

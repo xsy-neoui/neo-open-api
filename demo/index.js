@@ -1,4 +1,4 @@
-import { xObject, customApi } from '../src/main';
+import { xObject, customApi, request } from '../src/main';
 
 /**
  * 测试 Neo OpenAPI
@@ -129,12 +129,12 @@ const result1 = await customApi.run({
     id: 1
   },
 });
-console.log('result2:', result1);
+console.log('result1:', result1);
 
 
 // 示例2：执行自定义API（一个通用的代理接口自定义API）
-const result = await customApi.run({
-  apiUrl: '/rest/data/v2.0/scripts/api/proxy/forward',
+const result2 = await customApi.run({
+  apiUrl: 'https://crm-cd.xiaoshouyi.com/rest/data/v2.0/scripts/api/proxy/forward',
   methodType: 'POST',
   data: {
     url: 'https://interface.sina.cn/sports/pc_sports_caipiao_common_list_api.d.json',
@@ -144,4 +144,18 @@ const result = await customApi.run({
     },
   },
 });
-console.log('result2:', result);
+console.log('result2:', result2);
+
+// 示例3：执行第三方接口
+const result3 = await request({
+  url: 'https://jsonplaceholder.typicode.com/posts',
+  method: 'get',
+});
+console.log('result3:', result3);
+
+// 示例3：执行第三方接口
+const result5 = await request({
+  url: 'https://crm-cd.xiaoshouyi.com/rest/metadata/v3.0/ui/components/filte',
+  method: 'get',
+});
+console.log('result5:', result5);

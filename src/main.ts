@@ -33,4 +33,7 @@ const customApi = {
   run: runCustomApi,
 };
 
-export { axiosFetcher, xObject, customApi };
+// 重命名 axiosFetcher
+const request = axiosFetcher;
+
+export { request, axiosFetcher, xObject, customApi };

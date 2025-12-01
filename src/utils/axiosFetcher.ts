@@ -1,4 +1,5 @@
 import axios from 'axios'; // https://www.axios-http.cn/docs/intro
+import { isAllowDataApi } from './whitelist';
 
 // 创建基于 axios 的 fetcher 函数
 const axiosFetcher = async (options: any) => {
@@ -14,6 +15,10 @@ const axiosFetcher = async (options: any) => {
       },
       timeout: options?.timeout || 30000,
     };
+
+    if (!isAllowDataApi(config.url)) {
+      throw new Error('不允许使用的平台数据接口: ' + config.url);
+    }
 
     if (config?.method === 'GET') {
       config.params = options?.data || {};
