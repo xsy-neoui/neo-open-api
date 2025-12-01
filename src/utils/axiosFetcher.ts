@@ -8,6 +8,7 @@ const axiosFetcher = async (options: any) => {
       method: options?.method || 'GET',
       data: options?.data || {},
       headers: {
+        'xsy-inner-source': 'neo-open-api',
         'Content-Type': 'application/json',
         ...options?.headers,
       },
