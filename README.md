@@ -36,10 +36,12 @@ const result = await request({
 - `headers`: 请求头，默认包含 'Content-Type': 'application/json'
 - `timeout`: 超时时间，默认 30000ms
 
-##### request 内置拦截器，仅允许使用以下三类数据接口
+##### request 内置拦截器，仅允许使用以下五类数据接口
 - 自定义 API：/rest/data/v2.0/scripts
 - 获取自定义 API 列表：/rest/metadata/v2.0/dx/logic/extpoints/openapi
 - 实体类 open api：/rest/data/v2.0/xobjects
+- 实体列表接口：/rest/metadata/v2.0/xobjects/filter
+- 通用查询接口：/rest/data/v2/query
 
 ### 业务对象相关接口
 
