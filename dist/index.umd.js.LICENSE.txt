@@ -1,7 +1,7 @@
 /*!
- * neo-open-api v1.1.6
+ * neo-open-api v1.1.7
  * author: wibetter
  * build tool: AKFun
- * build time: Tue Dec 02 2025 10:43:44 GMT+0800 (中国标准时间)
+ * build time: Wed Dec 03 2025 10:48:17 GMT+0800 (中国标准时间)
  * build tool info: https://github.com/wibetter/akfun
  */

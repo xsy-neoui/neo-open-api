@@ -3,6 +3,8 @@ const whitelist = [
   '/rest/data/v2.0/scripts', // 运行自定义 API
   '/rest/metadata/v2.0/dx/logic/extpoints/openapi', // 获取自定义 API 列表
   '/rest/data/v2.0/xobjects', // 实体类 open api
+  '/rest/data/v2/query', // 通用查询接口
+  '/rest/metadata/v2.0/xobjects/filter', // 获取实体列表
 ];
 
 export const isAllowDataApi = (api: string) => {
